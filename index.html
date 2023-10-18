@@ -11,16 +11,14 @@
         flex-direction: column;
         align-items: center;
     }
-    h4 {
+    h2, h3, h4 {
         margin-top: 10px;
         margin-bottom: 10px;
-    }
-
-    h2 {
         margin: 5px 0;
     }
     hr{
         margin: 20px 0;
+        width: 100%;
     }
 
 
@@ -64,8 +62,8 @@
 </style>
 <body>
 <section>
-    <h4 class="time"></h4>
-    <h4 class="price"></h4>
+    <h3 class="time"></h3>
+    <h3 class="price"></h3>
     <hr/>
     <div class="group">
         <h2>won to sats</h2>
@@ -122,7 +120,7 @@
 
     async function fetchPrice() {
         price = await fetch('https://api.upbit.com/v1/candles/days?market=KRW-BTC&count=1').then(res => res.json()).then(res => res[0]['trade_price'])
-        document.querySelector('.price').innerHTML = `Upbit price: ₩ ${price.toLocaleString()}`
+        document.querySelector('.price').innerHTML = `Upbit BTC: ₩ ${price.toLocaleString()}`
         document.querySelector('.time').innerHTML = String(new Date).substr(0, 24)
         syncSats(wonValue, pwValue)
         syncWon(satsValue, psValue)
