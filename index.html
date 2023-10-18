@@ -6,6 +6,19 @@
     body {
         padding: 20px;
     }
+    h4 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        margin: 5px 0;
+    }
+    hr{
+        margin: 20px 0;
+    }
+
+
 
     .group {
         display: flex;
@@ -21,86 +34,124 @@
         gap: 5px;
     }
 
-    .won-input, .p-input {
+    .sats-input, .won-input, .sp-input, .wp-input {
         text-align: right;
         font-size: 16px;
         width: 100%;
     }
 
     .group {
-        width: 210px;
+        margin: 10px 0;
+        padding: 5px 20px 20px 20px;
+        width: 230px;
+        border: 1px solid #ddd;
     }
 
     .label {
-        width: 170px;
+        width: 190px;
     }
 
-    .result, .price {
+    .won-result, .sats-result {
+        font-weight: bold;
         width: 100%;
         text-align: right;
     }
 </style>
 <body>
-<h2>won to sats</h2>
+
 <h4 class="time"></h4>
+<h4 class="price"></h4>
+<hr/>
 <div class="group">
+    <h2>won to sats</h2>
     <div class="item">
-        <div class="label">- price:</div>
-        <div class="price"></div>
-    </div>
-    <div class="item">
-        <div class="label">- won:</div>
+        <div class="label">- ₩:</div>
         <input class="won-input"/>
     </div>
     <div class="item">
-        <div class="label">- premium:</div>
-        <input class="p-input"/>
+        <div class="label">- premium(%):</div>
+        <input class="wp-input"/>
     </div>
     <div class="item">
         <div class="label">- sats:</div>
-        <div class="result"></div>
+        <div class="sats-result"></div>
+    </div>
+</div>
+
+<div class="group">
+    <h2>sats to won</h2>
+    <div class="item">
+        <div class="label">- sats:</div>
+        <input class="sats-input"/>
+    </div>
+    <div class="item">
+        <div class="label">- premium(%):</div>
+        <input class="sp-input"/>
+    </div>
+    <div class="item">
+        <div class="label">- ₩:</div>
+        <div class="won-result"></div>
     </div>
 </div>
 <script>
     const unit = 100000000
     let price
-    let wonValue
-    let pValue
+    let wonValue, satsValue
+    let pwValue, psValue
 
     function syncSats(value) {
         const sats = value * unit / price
-        const pSats = Math.floor(sats * ((100 + pValue) / 100))
-        document.querySelector('.result').innerHTML = pSats.toLocaleString()
+        const pSats = Math.floor(sats * ((100 + pwValue) / 100))
+        document.querySelector('.sats-result').innerHTML = pSats.toLocaleString()
+    }
+
+    function syncWon(value) {
+        const won = value * price / unit
+        const pWon = Math.floor(won * ((100 + psValue) / 100))
+        document.querySelector('.won-result').innerHTML = pWon.toLocaleString()
     }
 
     async function fetchPrice() {
         price = await fetch('https://api.upbit.com/v1/candles/days?market=KRW-BTC&count=1').then(res => res.json()).then(res => res[0]['trade_price'])
-        document.querySelector('.price').innerHTML = price.toLocaleString()
+        document.querySelector('.price').innerHTML = `Upbit price: ₩ ${price.toLocaleString()}`
         document.querySelector('.time').innerHTML = String(new Date).substr(0, 24)
         syncSats(wonValue)
+        syncWon(satsValue)
     }
 
-    function loadWonValue() {
+    function loadValue() {
         if (!wonValue) {
             const initValue = localStorage.getItem('wonValue')
             wonValue = initValue ? Number(initValue) : 30000
             document.querySelector('.won-input').value = wonValue.toLocaleString()
             syncSats(wonValue)
         }
+        if (!satsValue) {
+            const initValue = localStorage.getItem('satsValue')
+            satsValue = initValue ? Number(initValue) : 100000
+            document.querySelector('.sats-input').value = satsValue.toLocaleString()
+            syncSats(wonValue)
+        }
     }
 
     function loadPValue() {
-        if (!pValue) {
-            const initValue = localStorage.getItem('pValue')
-            pValue = initValue ? Number(initValue) : 0
-            document.querySelector('.p-input').value = pValue.toLocaleString() + '%'
+        if (!pwValue) {
+            const initValue = localStorage.getItem('pwValue')
+            pwValue = initValue ? Number(initValue) : 0
+            document.querySelector('.wp-input').value = pwValue.toLocaleString() + '%'
+            syncSats(wonValue)
+        }
+        if (!psValue) {
+            const initValue = localStorage.getItem('psValue')
+            psValue = initValue ? Number(initValue) : 0
+            document.querySelector('.sp-input').value = psValue.toLocaleString() + '%'
             syncSats(wonValue)
         }
     }
 
 
     async function init() {
-        loadWonValue()
+        loadValue()
         loadPValue()
         await fetchPrice()
         document.querySelector('.won-input').addEventListener('keyup', (e) => {
@@ -109,11 +160,23 @@
             localStorage.setItem('wonValue', value)
             syncSats(value)
         })
-        document.querySelector('.p-input').addEventListener('keyup', (e) => {
-            const value = Number(e.target.value.slice(0, -1).replaceAll(',', ''))
-            pValue = value
-            localStorage.setItem('pValue', value)
+        document.querySelector('.sats-input').addEventListener('keyup', (e) => {
+            const value = Number(e.target.value.replaceAll(',', ''))
+            wonValue = value
+            localStorage.setItem('satsValue', value)
+            syncWon(value)
+        })
+        document.querySelector('.wp-input').addEventListener('keyup', (e) => {
+            const value = Number(e.target.value.replaceAll('%', '').replaceAll(',', ''))
+            pwValue = value
+            localStorage.setItem('pwValue', value)
             syncSats(value)
+        })
+        document.querySelector('.sp-input').addEventListener('keyup', (e) => {
+            const value = Number(e.target.value.replaceAll('%', '').replaceAll(',', ''))
+            pwValue = value
+            localStorage.setItem('psValue', value)
+            syncWon(value)
         })
     }
 
