@@ -1,0 +1,73 @@
+<head>
+    <title>sats-by-won</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<style>
+    body{
+        padding: 20px;
+    }
+    .group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .item {
+        display: flex;
+        flex-direction: row;
+        font-size: 16px;
+        gap: 5px;
+    }
+    .won-input{
+        text-align: right;
+        font-size: 16px;
+        width:  100%;
+    }
+    .group {
+        width: 150px;
+    }
+    .result, .price {
+        width: 100%;
+        text-align: right;
+    }
+</style>
+<body>
+<div class="group">
+    <h2>won to sats</h2>
+    <div class="item">
+        <div>price:</div> <div class="price"></div>
+    </div>
+    <div class="item">
+        <div>won:</div> <input class="won-input"/>
+    </div>
+    <div class="item">
+        <div>sats:</div> <div class="result"></div>
+    </div>
+</div>
+<script>
+    const unit = 100000000
+    let price = 0
+
+    function syncSats(value){
+        document.querySelector('.result').innerHTML = (Math.floor(value * unit / price)).toLocaleString()
+    }
+
+    async function init(){
+        price = await fetch('https://api.upbit.com/v1/candles/days?market=KRW-BTC&count=1').then(res => res.json()).then(res => res[0]['trade_price'])
+        console.log({price})
+        document.querySelector('.price').innerHTML = price.toLocaleString()
+
+        const initValue = localStorage.getItem('wonValue')
+        const wonValue = initValue ? Number(initValue) : 30000
+        document.querySelector('.won-input').value = wonValue.toLocaleString()
+        syncSats(wonValue)
+    }
+
+    init()
+
+    document.querySelector('.won-input').addEventListener('keydown', (e) => {
+        const value = Number(e.target.value.replaceAll(',', ''))
+        localStorage.setItem('wonValue', value)
+        syncSats(value)
+    })
+</script>
+</body>
