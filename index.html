@@ -140,14 +140,12 @@
 
     function loadValue() {
         if (!wonValue) {
-            const initValue = localStorage.getItem('wonValue')
-            wonValue = initValue ? Number(initValue) : 30000
+            wonValue = Number(localStorage.getItem('wonValue')) || 30000
             document.querySelector('.won-input').value = wonValue.toLocaleString()
             syncSats(wonValue, pwValue)
         }
         if (!satsValue) {
-            const initValue = localStorage.getItem('satsValue')
-            satsValue = initValue ? Number(initValue) : 100000
+            satsValue = Number(localStorage.getItem('satsValue')) || 100000
             document.querySelector('.sats-input').value = satsValue.toLocaleString()
             syncSats(satsValue, psValue)
         }
@@ -155,14 +153,14 @@
 
     function loadPValue() {
         if (!pwValue) {
-            const initValue = localStorage.getItem('pwValue')
-            pwValue = initValue ? Number(initValue) : 0
+            const initValue = Number(localStorage.getItem('pwValue'))
+            pwValue = Number.isNaN(initValue) ? 30000 : initValue
             document.querySelector('.pw-input').value = pwValue.toLocaleString()
             syncSats(wonValue, pwValue)
         }
         if (!psValue) {
-            const initValue = localStorage.getItem('psValue')
-            psValue = initValue ? Number(initValue) : 0
+            const initValue = Number(localStorage.getItem('psValue'))
+            psValue = Number.isNaN(initValue) ? 0 : initValue
             document.querySelector('.ps-input').value = psValue.toLocaleString()
             syncSats(satsValue, psValue)
         }
