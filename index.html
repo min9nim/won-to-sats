@@ -144,13 +144,13 @@
         if (!pwValue) {
             const initValue = localStorage.getItem('pwValue')
             pwValue = initValue ? Number(initValue) : 0
-            document.querySelector('.wp-input').value = pwValue.toLocaleString() + '%'
+            document.querySelector('.wp-input').value = pwValue.toLocaleString()
             syncSats(wonValue)
         }
         if (!psValue) {
             const initValue = localStorage.getItem('psValue')
             psValue = initValue ? Number(initValue) : 0
-            document.querySelector('.sp-input').value = psValue.toLocaleString() + '%'
+            document.querySelector('.sp-input').value = psValue.toLocaleString()
             syncSats(wonValue)
         }
     }
@@ -173,13 +173,13 @@
             syncWon(value)
         })
         document.querySelector('.wp-input').addEventListener('keyup', (e) => {
-            const value = Number(e.target.value.replaceAll('%', '').replaceAll(',', ''))
+            const value = Number(e.target.value.replaceAll(',', ''))
             pwValue = value
             localStorage.setItem('pwValue', value)
             syncSats(value)
         })
         document.querySelector('.sp-input').addEventListener('keyup', (e) => {
-            const value = Number(e.target.value.replaceAll('%', '').replaceAll(',', ''))
+            const value = Number(e.target.value.replaceAll(',', ''))
             pwValue = value
             localStorage.setItem('psValue', value)
             syncWon(value)
