@@ -165,12 +165,14 @@
         await fetchPrice()
         document.querySelector('.won-input').addEventListener('keyup', (e) => {
             const value = Number(e.target.value.replaceAll(',', ''))
+            document.querySelector('.won-input').value = value.toLocaleString()
             wonValue = value
             localStorage.setItem('wonValue', value)
             syncSats(value, pwValue)
         })
         document.querySelector('.sats-input').addEventListener('keyup', (e) => {
             const value = Number(e.target.value.replaceAll(',', ''))
+            document.querySelector('.sats-input').value = value.toLocaleString()
             satsValue = value
             localStorage.setItem('satsValue', value)
             syncWon(value, psValue)
