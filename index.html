@@ -6,6 +6,11 @@
     body {
         padding: 20px;
     }
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     h4 {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -58,41 +63,42 @@
     }
 </style>
 <body>
+<section>
+    <h4 class="time"></h4>
+    <h4 class="price"></h4>
+    <hr/>
+    <div class="group">
+        <h2>won to sats</h2>
+        <div class="item">
+            <div class="label">₩:</div>
+            <input class="won-input"/>
+        </div>
+        <div class="item">
+            <div class="label">p(%):</div>
+            <input class="wp-input"/>
+        </div>
+        <div class="item">
+            <div class="label">sats:</div>
+            <div class="sats-result"></div>
+        </div>
+    </div>
 
-<h4 class="time"></h4>
-<h4 class="price"></h4>
-<hr/>
-<div class="group">
-    <h2>won to sats</h2>
-    <div class="item">
-        <div class="label">- ₩:</div>
-        <input class="won-input"/>
+    <div class="group">
+        <h2>sats to won</h2>
+        <div class="item">
+            <div class="label">sats:</div>
+            <input class="sats-input"/>
+        </div>
+        <div class="item">
+            <div class="label">p(%):</div>
+            <input class="sp-input"/>
+        </div>
+        <div class="item">
+            <div class="label">₩:</div>
+            <div class="won-result"></div>
+        </div>
     </div>
-    <div class="item">
-        <div class="label">- premium(%):</div>
-        <input class="wp-input"/>
-    </div>
-    <div class="item">
-        <div class="label">- sats:</div>
-        <div class="sats-result"></div>
-    </div>
-</div>
-
-<div class="group">
-    <h2>sats to won</h2>
-    <div class="item">
-        <div class="label">- sats:</div>
-        <input class="sats-input"/>
-    </div>
-    <div class="item">
-        <div class="label">- premium(%):</div>
-        <input class="sp-input"/>
-    </div>
-    <div class="item">
-        <div class="label">- ₩:</div>
-        <div class="won-result"></div>
-    </div>
-</div>
+</section>
 <script>
     const unit = 100000000
     let price
