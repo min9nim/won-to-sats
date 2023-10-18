@@ -71,11 +71,11 @@
         <h2>won to sats</h2>
         <div class="item">
             <div class="label">₩:</div>
-            <input class="won-input"/>
+            <input class="won-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
             <div class="label">p(%):</div>
-            <input class="pw-input"/>
+            <input class="pw-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
             <div class="label">=></div>
@@ -88,11 +88,11 @@
         <h2>sats to won</h2>
         <div class="item">
             <div class="label">sats:</div>
-            <input class="sats-input"/>
+            <input class="sats-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
             <div class="label">p(%):</div>
-            <input class="ps-input"/>
+            <input class="ps-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
             <div class="label">=></div>
