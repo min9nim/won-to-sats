@@ -105,15 +105,18 @@
     let wonValue, satsValue
     let pwValue, psValue
 
-    function syncSats(value) {
+    function syncSats(value, p) {
+        console.log({value, p})
+
         const sats = value * unit / price
-        const pSats = Math.floor(sats * ((100 + pwValue) / 100))
+        const pSats = Math.floor(sats * ((100 + p) / 100))
+        console.log({value, pSats})
         document.querySelector('.sats-result').innerHTML = pSats.toLocaleString()
     }
 
-    function syncWon(value) {
+    function syncWon(value, p) {
         const won = value * price / unit
-        const pWon = Math.floor(won * ((100 + psValue) / 100))
+        const pWon = Math.floor(won * ((100 + p) / 100))
         document.querySelector('.won-result').innerHTML = pWon.toLocaleString()
     }
 
@@ -121,8 +124,8 @@
         price = await fetch('https://api.upbit.com/v1/candles/days?market=KRW-BTC&count=1').then(res => res.json()).then(res => res[0]['trade_price'])
         document.querySelector('.price').innerHTML = `Upbit price: ₩ ${price.toLocaleString()}`
         document.querySelector('.time').innerHTML = String(new Date).substr(0, 24)
-        syncSats(wonValue)
-        syncWon(satsValue)
+        syncSats(wonValue, pwValue)
+        syncWon(satsValue, psValue)
     }
 
     function loadValue() {
@@ -130,13 +133,13 @@
             const initValue = localStorage.getItem('wonValue')
             wonValue = initValue ? Number(initValue) : 30000
             document.querySelector('.won-input').value = wonValue.toLocaleString()
-            syncSats(wonValue)
+            syncSats(wonValue, pwValue)
         }
         if (!satsValue) {
             const initValue = localStorage.getItem('satsValue')
             satsValue = initValue ? Number(initValue) : 100000
             document.querySelector('.sats-input').value = satsValue.toLocaleString()
-            syncSats(wonValue)
+            syncSats(satsValue, psValue)
         }
     }
 
@@ -145,13 +148,13 @@
             const initValue = localStorage.getItem('pwValue')
             pwValue = initValue ? Number(initValue) : 0
             document.querySelector('.pw-input').value = pwValue.toLocaleString()
-            syncSats(wonValue)
+            syncSats(wonValue, pwValue)
         }
         if (!psValue) {
             const initValue = localStorage.getItem('psValue')
             psValue = initValue ? Number(initValue) : 0
             document.querySelector('.ps-input').value = psValue.toLocaleString()
-            syncSats(wonValue)
+            syncSats(satsValue, psValue)
         }
     }
 
@@ -164,25 +167,25 @@
             const value = Number(e.target.value.replaceAll(',', ''))
             wonValue = value
             localStorage.setItem('wonValue', value)
-            syncSats(value)
+            syncSats(value, pwValue)
         })
         document.querySelector('.sats-input').addEventListener('keyup', (e) => {
             const value = Number(e.target.value.replaceAll(',', ''))
             satsValue = value
             localStorage.setItem('satsValue', value)
-            syncWon(value)
+            syncWon(value, psValue)
         })
         document.querySelector('.pw-input').addEventListener('keyup', (e) => {
             const value = Number(e.target.value.replaceAll(',', ''))
             pwValue = value
             localStorage.setItem('pwValue', value)
-            syncSats(value)
+            syncSats(wonValue, value)
         })
         document.querySelector('.ps-input').addEventListener('keyup', (e) => {
             const value = Number(e.target.value.replaceAll(',', ''))
             psValue = value
             localStorage.setItem('psValue', value)
-            syncWon(value)
+            syncWon(satsValue, value)
         })
     }
 
