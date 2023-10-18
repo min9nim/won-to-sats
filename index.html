@@ -1,4 +1,5 @@
 <head>
+    <meta charset="utf-8">
     <title>won-to-sats</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
@@ -21,6 +22,11 @@
         margin-top: 10px;
         margin-bottom: 10px;
         margin: 5px 0;
+    }
+
+    .price > a {
+        /*font-style: italic;*/
+        font-weight: bold;
     }
 
     hr {
@@ -70,7 +76,7 @@
 <body>
 <section>
     <h3 class="time"></h3>
-    <h3 class="price"></h3>
+    <h3 class="price">Upbit BTC: <a href="https://upbit.com/full_chart?code=CRIX.UPBIT.KRW-BTC" target="_blank">Loading..</a></h3>
     <hr/>
     <div class="group">
         <h2>won to sats</h2>
@@ -133,7 +139,7 @@
 
     async function fetchPrice() {
         price = await fetch('https://api.upbit.com/v1/candles/days?market=KRW-BTC&count=1').then(res => res.json()).then(res => res[0]['trade_price'])
-        document.querySelector('.price').innerHTML = `Upbit BTC: ₩ ${price.toLocaleString()}`
+        document.querySelector('.price > a').innerHTML = `₩ ${price.toLocaleString()}`
         document.querySelector('.time').innerHTML = (new Date()).toLocaleString('ko-KR', {
             hour12: false,
             year: 'numeric',
