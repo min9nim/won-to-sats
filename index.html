@@ -39,7 +39,7 @@
         gap: 5px;
     }
 
-    .sats-input, .won-input, .sp-input, .wp-input {
+    .sats-input, .won-input, .ps-input, .pw-input {
         text-align: right;
         font-size: 16px;
         width: 100%;
@@ -75,7 +75,7 @@
         </div>
         <div class="item">
             <div class="label">p(%):</div>
-            <input class="wp-input"/>
+            <input class="pw-input"/>
         </div>
         <div class="item">
             <div class="label">sats:</div>
@@ -91,7 +91,7 @@
         </div>
         <div class="item">
             <div class="label">p(%):</div>
-            <input class="sp-input"/>
+            <input class="ps-input"/>
         </div>
         <div class="item">
             <div class="label">₩:</div>
@@ -144,13 +144,13 @@
         if (!pwValue) {
             const initValue = localStorage.getItem('pwValue')
             pwValue = initValue ? Number(initValue) : 0
-            document.querySelector('.wp-input').value = pwValue.toLocaleString()
+            document.querySelector('.pw-input').value = pwValue.toLocaleString()
             syncSats(wonValue)
         }
         if (!psValue) {
             const initValue = localStorage.getItem('psValue')
             psValue = initValue ? Number(initValue) : 0
-            document.querySelector('.sp-input').value = psValue.toLocaleString()
+            document.querySelector('.ps-input').value = psValue.toLocaleString()
             syncSats(wonValue)
         }
     }
@@ -168,19 +168,19 @@
         })
         document.querySelector('.sats-input').addEventListener('keyup', (e) => {
             const value = Number(e.target.value.replaceAll(',', ''))
-            wonValue = value
+            satsValue = value
             localStorage.setItem('satsValue', value)
             syncWon(value)
         })
-        document.querySelector('.wp-input').addEventListener('keyup', (e) => {
+        document.querySelector('.pw-input').addEventListener('keyup', (e) => {
             const value = Number(e.target.value.replaceAll(',', ''))
             pwValue = value
             localStorage.setItem('pwValue', value)
             syncSats(value)
         })
-        document.querySelector('.sp-input').addEventListener('keyup', (e) => {
+        document.querySelector('.ps-input').addEventListener('keyup', (e) => {
             const value = Number(e.target.value.replaceAll(',', ''))
-            pwValue = value
+            psValue = value
             localStorage.setItem('psValue', value)
             syncWon(value)
         })
