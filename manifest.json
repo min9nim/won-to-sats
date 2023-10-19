@@ -1,5 +1,13 @@
 {
- "name": "App",
+ "name": "wonToSats",
+ "description": "calculate won & sats by premium",
+ "start_url": "/",
+ "short_name": "wonToSats",
+ "display": "standalone",
+ "features": [
+  "Cross Platform",
+  "Frontend only"
+ ],
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
