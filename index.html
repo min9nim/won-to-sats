@@ -45,6 +45,11 @@
         margin: 5px 0;
     }
 
+    fieldset > legend {
+        font-size: 26px;
+        font-weight: bold;
+    }
+
     hr {
         margin: 20px 0;
         width: 100%;
@@ -73,13 +78,13 @@
 
     .group {
         margin: 10px 0;
-        padding: 5px 20px 20px 20px;
+        padding: 20px 20px 20px 20px;
         width: 230px;
         border: 1px solid #ddd;
     }
 
     .label {
-        width: 190px;
+        width: 100px;
     }
 
     .won-result, .sats-result {
@@ -94,8 +99,8 @@
     <h3 class="time"></h3>
     <h3 class="price">Upbit BTC: <b>Loading..</b></h3>
     <hr/>
-    <div class="group">
-        <h2>won to sats</h2>
+    <fieldset class="group">
+        <legend>won to sats</legend>
         <div class="item">
             <div class="label">₩:</div>
             <input class="won-input"
@@ -111,10 +116,10 @@
             <div class="sats-result"></div>
             sats
         </div>
-    </div>
+    </fieldset>
 
-    <div class="group">
-        <h2>sats to won</h2>
+    <fieldset class="group">
+        <legend>sats to won</legend>
         <div class="item">
             <div class="label">sats:</div>
             <input class="sats-input"
@@ -130,7 +135,7 @@
             <div class="won-result"></div>
             ₩
         </div>
-    </div>
+    </fieldset>
     <hr>
     <div class="bug-report">
         Bug report: <a href="https://twitter.com/btclog29/status/1714661452118986860">on twitter</a>
