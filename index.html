@@ -77,6 +77,10 @@
         width: 230px;
         border: 1px solid #ddd;
     }
+    .option{
+        width: 270px;
+        text-align: right;
+    }
 
     .label {
         width: 190px;
@@ -94,6 +98,10 @@
     <h3 class="time"></h3>
     <h3 class="price">Upbit BTC: <b>Loading..</b></h3>
     <hr/>
+    <div class="option">
+        <input type="checkbox" id="scales" name="btc" />
+        <label for="btc">btc</label>
+    </div>
     <div class="group">
         <h2>won to sats</h2>
         <div class="item">
@@ -139,8 +147,6 @@
     let pwValue, psValue
 
     function syncSats(value, p) {
-        console.log({value, p})
-
         const sats = value * unit / price
         const pSats = Math.floor(sats * ((100 + p) / 100))
         console.log({value, pSats})
