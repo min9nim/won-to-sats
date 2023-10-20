@@ -115,14 +115,14 @@
         <div class="item">
             <div class="label">=></div>
             <div class="sats-result"></div>
-            sats
+            <div class="btc-unit">sats</div>
         </div>
     </div>
 
     <div class="group">
         <h2 class="title2">sats to won</h2>
         <div class="item">
-            <div class="label">sats:</div>
+            <div class="label btc-label">sats:</div>
             <input class="sats-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
@@ -132,7 +132,7 @@
         <div class="item">
             <div class="label">=></div>
             <div class="won-result"></div>
-            ₩
+            <div>₩</div>
         </div>
     </div>
     <hr>
@@ -238,6 +238,8 @@
             btcChecked = e.target.checked
             document.querySelector('.title1').innerHTML = btcChecked ?  'won to btc' : 'won to sats'
             document.querySelector('.title2').innerHTML = btcChecked ? 'btc to won' : 'sats to won'
+            document.querySelector('.btc-unit').innerHTML = btcChecked ? 'btc' : 'sats'
+            document.querySelector('.btc-label').innerHTML = btcChecked ? 'btc' : 'sats'
         })
 
     }
