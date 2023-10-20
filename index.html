@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -33,7 +33,7 @@
     }
 
     section {
-        flex:1;
+        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -77,7 +77,8 @@
         width: 230px;
         border: 1px solid #ddd;
     }
-    .option{
+
+    .option {
         width: 270px;
         text-align: right;
     }
@@ -99,18 +100,20 @@
     <h3 class="price">Upbit BTC: <b>Loading..</b></h3>
     <hr/>
     <div class="option">
-        <input type="checkbox" id="btc" name="btc" />
+        <input type="checkbox" id="btc" name="btc"/>
         <label for="btc">btc</label>
     </div>
     <div class="group">
         <h2 class="title1">won to sats</h2>
         <div class="item">
             <div class="label">₩:</div>
-            <input class="won-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+            <input class="won-input"
+                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
             <div class="label">p(%):</div>
-            <input class="pw-input" oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"/>
+            <input class="pw-input"
+                   oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
             <div class="label">=></div>
@@ -123,11 +126,13 @@
         <h2 class="title2">sats to won</h2>
         <div class="item">
             <div class="label btc-label">sats:</div>
-            <input class="sats-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+            <input class="sats-input"
+                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
             <div class="label">p(%):</div>
-            <input class="ps-input" oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"/>
+            <input class="ps-input"
+                   oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
             <div class="label">=></div>
@@ -148,11 +153,11 @@
     let btcChecked
 
     function syncSats(value, p) {
-        if(btcChecked){
+        if (btcChecked) {
             const sats = value * unit / price
             const pSats = Math.floor(sats * ((100 + p) / 100)) / unit
-            document.querySelector('.sats-result').innerHTML = pSats.toLocaleString('ko-KR', { maximumSignificantDigits: 20})
-        }else{
+            document.querySelector('.sats-result').innerHTML = pSats.toLocaleString('ko-KR', {maximumSignificantDigits: 20})
+        } else {
             const sats = value * unit / price
             const pSats = Math.floor(sats * ((100 + p) / 100))
             document.querySelector('.sats-result').innerHTML = pSats.toLocaleString()
@@ -160,11 +165,11 @@
     }
 
     function syncWon(value, p) {
-        if(btcChecked){
+        if (btcChecked) {
             const won = value * price
             const pWon = Math.floor(won * ((100 + p) / 100))
             document.querySelector('.won-result').innerHTML = pWon.toLocaleString()
-        }else{
+        } else {
             const won = value * price / unit
             const pWon = Math.floor(won * ((100 + p) / 100))
             document.querySelector('.won-result').innerHTML = pWon.toLocaleString()
@@ -179,9 +184,9 @@
             year: 'numeric',
             month: 'numeric',
             day: 'numeric',
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
         })
         syncSats(wonValue, pwValue)
         syncWon(satsValue, psValue)
@@ -229,7 +234,7 @@
         })
         document.querySelector('.sats-input').addEventListener('keyup', (e) => {
             const value = Number(e.target.value.replaceAll(',', ''))
-            if(!btcChecked){
+            if (!btcChecked) {
                 document.querySelector('.sats-input').value = value.toLocaleString()
             }
             satsValue = value
@@ -250,10 +255,14 @@
         })
         document.querySelector('#btc').addEventListener('change', (e) => {
             btcChecked = e.target.checked
-            document.querySelector('.title1').innerHTML = btcChecked ?  'won to btc' : 'won to sats'
+            document.querySelector('.title1').innerHTML = btcChecked ? 'won to btc' : 'won to sats'
             document.querySelector('.title2').innerHTML = btcChecked ? 'btc to won' : 'sats to won'
             document.querySelector('.btc-unit').innerHTML = btcChecked ? 'btc' : 'sats'
             document.querySelector('.btc-label').innerHTML = btcChecked ? 'btc' : 'sats'
+            satsValue = btcChecked ? satsValue / unit : satsValue * unit
+            document.querySelector('.sats-input').value = btcChecked ? satsValue.toLocaleString('ko-KR', {maximumSignificantDigits: 20}) : satsValue.toLocaleString()
+            syncSats(wonValue, pwValue)
+            syncWon(satsValue, psValue)
         })
 
     }
