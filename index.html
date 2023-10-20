@@ -148,15 +148,27 @@
     let btcChecked
 
     function syncSats(value, p) {
-        const sats = value * unit / price
-        const pSats = Math.floor(sats * ((100 + p) / 100))
-        document.querySelector('.sats-result').innerHTML = pSats.toLocaleString()
+        if(btcChecked){
+            const sats = value * unit / price
+            const pSats = Math.floor(sats * ((100 + p) / 100)) / unit
+            document.querySelector('.sats-result').innerHTML = pSats.toLocaleString('ko-KR', { maximumSignificantDigits: 20})
+        }else{
+            const sats = value * unit / price
+            const pSats = Math.floor(sats * ((100 + p) / 100))
+            document.querySelector('.sats-result').innerHTML = pSats.toLocaleString()
+        }
     }
 
     function syncWon(value, p) {
-        const won = value * price / unit
-        const pWon = Math.floor(won * ((100 + p) / 100))
-        document.querySelector('.won-result').innerHTML = pWon.toLocaleString()
+        if(btcChecked){
+            const won = value * price
+            const pWon = Math.floor(won * ((100 + p) / 100))
+            document.querySelector('.won-result').innerHTML = pWon.toLocaleString()
+        }else{
+            const won = value * price / unit
+            const pWon = Math.floor(won * ((100 + p) / 100))
+            document.querySelector('.won-result').innerHTML = pWon.toLocaleString()
+        }
     }
 
     async function fetchPrice() {
@@ -217,7 +229,9 @@
         })
         document.querySelector('.sats-input').addEventListener('keyup', (e) => {
             const value = Number(e.target.value.replaceAll(',', ''))
-            document.querySelector('.sats-input').value = value.toLocaleString()
+            if(!btcChecked){
+                document.querySelector('.sats-input').value = value.toLocaleString()
+            }
             satsValue = value
             localStorage.setItem('satsValue', value)
             syncWon(value, psValue)
