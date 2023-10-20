@@ -149,7 +149,6 @@
     function syncSats(value, p) {
         const sats = value * unit / price
         const pSats = Math.floor(sats * ((100 + p) / 100))
-        console.log({value, pSats})
         document.querySelector('.sats-result').innerHTML = pSats.toLocaleString()
     }
 
