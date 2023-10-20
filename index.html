@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -33,7 +33,7 @@
     }
 
     section {
-        flex:1;
+        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -98,11 +98,13 @@
         <h2>won to sats</h2>
         <div class="item">
             <div class="label">₩:</div>
-            <input class="won-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+            <input class="won-input"
+                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
             <div class="label">p(%):</div>
-            <input class="pw-input" oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"/>
+            <input class="pw-input"
+                   oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
             <div class="label">=></div>
@@ -115,11 +117,13 @@
         <h2>sats to won</h2>
         <div class="item">
             <div class="label">sats:</div>
-            <input class="sats-input" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+            <input class="sats-input"
+                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
             <div class="label">p(%):</div>
-            <input class="ps-input" oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"/>
+            <input class="ps-input"
+                   oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"/>
         </div>
         <div class="item">
             <div class="label">=></div>
@@ -139,11 +143,8 @@
     let pwValue, psValue
 
     function syncSats(value, p) {
-        console.log({value, p})
-
         const sats = value * unit / price
         const pSats = Math.floor(sats * ((100 + p) / 100))
-        console.log({value, pSats})
         document.querySelector('.sats-result').innerHTML = pSats.toLocaleString()
     }
 
@@ -161,9 +162,9 @@
             year: 'numeric',
             month: 'numeric',
             day: 'numeric',
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
         })
         syncSats(wonValue, pwValue)
         syncWon(satsValue, psValue)
