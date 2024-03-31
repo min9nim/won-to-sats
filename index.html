@@ -1,258 +1,290 @@
 <head>
-    <meta charset="utf-8">
-    <title>wonToSats</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="google-adsense-account" content="ca-pub-3221090343920987">
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3221090343920987"
-            crossorigin="anonymous"></script>
-
+  <meta charset="utf-8" />
+  <title>wonToSats</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="google-adsense-account" content="ca-pub-3221090343920987" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="192x192"
+    href="/android-icon-192x192.png"
+  />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="msapplication-TileColor" content="#ffffff" />
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+  <meta name="theme-color" content="#ffffff" />
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3221090343920987"
+    crossorigin="anonymous"
+  ></script>
 </head>
 <style>
-    body {
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #333;
-    }
+  body {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+  }
 
-    section {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .time {
-        font-style: italic;
-        color: #666;
-    }
+  .time {
+    font-style: italic;
+    color: #666;
+  }
 
-    .price {
-        color: #444;
-    }
+  .price {
+    color: #444;
+  }
 
-    h2, h3, h4 {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        margin: 5px 0;
-    }
+  h2,
+  h3,
+  h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin: 5px 0;
+  }
 
-    fieldset > legend {
-        font-size: 22px;
-        font-weight: bold;
-        color: #999;
-    }
+  fieldset > legend {
+    font-size: 22px;
+    font-weight: bold;
+    color: #999;
+  }
 
-    hr {
-        margin: 15px 0;
-        width: 100%;
-    }
+  hr {
+    margin: 15px 0;
+    width: 100%;
+  }
 
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 
-    .group {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
+  .item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 16px;
+    gap: 5px;
+  }
 
-    .item {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        font-size: 16px;
-        gap: 5px;
-    }
+  .sats-input,
+  .won-input,
+  .ps-input,
+  .pw-input {
+    text-align: right;
+    font-size: 16px;
+    width: 100%;
+    border: 1px solid #ddd;
+    color: #222;
+  }
 
-    .sats-input, .won-input, .ps-input, .pw-input {
-        text-align: right;
-        font-size: 16px;
-        width: 100%;
-        border: 1px solid #ddd;
-        color: #222;
-    }
+  .group {
+    margin: 10px 0;
+    padding: 20px 20px 20px 20px;
+    width: 210px;
+    border: 1px solid #ddd;
+  }
 
-    .group {
-        margin: 10px 0;
-        padding: 20px 20px 20px 20px;
-        width: 210px;
-        border: 1px solid #ddd;
-    }
+  .label {
+    width: 100px;
+  }
 
-    .label {
-        width: 100px;
-    }
-
-    .won-result, .sats-result {
-        font-weight: bold;
-        width: 100%;
-        text-align: right;
-    }
-
+  .won-result,
+  .sats-result {
+    font-weight: bold;
+    width: 100%;
+    text-align: right;
+  }
 </style>
 <body>
-<section>
+  <section>
     <h3 class="time"></h3>
     <h3 class="price">Upbit BTC: <b>Loading..</b></h3>
-    <hr/>
+    <hr />
     <fieldset class="group">
-        <legend>won to sats</legend>
-        <div class="item">
-            <div class="label">₩:</div>
-            <input class="won-input" inputmode="decimal"
-                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
-        </div>
-        <div class="item">
-            <div class="label">p(%):</div>
-            <input class="pw-input" inputmode="decimal"
-                   oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"/>
-        </div>
-        <div class="item">
-            <div class="label">=></div>
-            <div class="sats-result"></div>
-            sats
-        </div>
+      <legend>won to sats</legend>
+      <div class="item">
+        <div class="label">₩:</div>
+        <input
+          class="won-input"
+          inputmode="decimal"
+          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+        />
+      </div>
+      <div class="item">
+        <div class="label">p(%):</div>
+        <input
+          class="pw-input"
+          inputmode="decimal"
+          oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"
+        />
+      </div>
+      <div class="item">
+        <div class="label">=></div>
+        <div class="sats-result"></div>
+        sats
+      </div>
     </fieldset>
 
     <fieldset class="group">
-        <legend>sats to won</legend>
-        <div class="item">
-            <div class="label">sats:</div>
-            <input class="sats-input" inputmode="decimal"
-                   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
-        </div>
-        <div class="item">
-            <div class="label">p(%):</div>
-            <input class="ps-input" inputmode="decimal"
-                   oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"/>
-        </div>
-        <div class="item">
-            <div class="label">=></div>
-            <div class="won-result"></div>
-            ₩
-        </div>
+      <legend>sats to won</legend>
+      <div class="item">
+        <div class="label">sats:</div>
+        <input
+          class="sats-input"
+          inputmode="decimal"
+          oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+        />
+      </div>
+      <div class="item">
+        <div class="label">p(%):</div>
+        <input
+          class="ps-input"
+          inputmode="decimal"
+          oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"
+        />
+      </div>
+      <div class="item">
+        <div class="label">=></div>
+        <div class="won-result"></div>
+        ₩
+      </div>
     </fieldset>
-    <hr>
+    <hr />
     <div class="bug-report">
-        Bug report: <a href="https://twitter.com/btclog29/status/1714661452118986860">on twitter</a>
+      Bug report:
+      <a href="https://twitter.com/btclog29/status/1714661452118986860"
+        >on twitter</a
+      >
     </div>
-</section>
-<script>
+  </section>
+  <script>
     const unit = 100000000
     let price
     let wonValue, satsValue
     let pwValue, psValue
 
     function syncSats(value, p) {
-        const sats = value * unit / price
-        const pSats = Math.floor(sats * ((100 + p) / 100))
-        document.querySelector('.sats-result').innerHTML = pSats.toLocaleString()
+      const sats = (value * unit) / price
+      const pSats = Math.floor(sats * ((100 + p) / 100))
+      document.querySelector('.sats-result').innerHTML = pSats.toLocaleString()
     }
 
     function syncWon(value, p) {
-        const won = value * price / unit
-        const pWon = Math.floor(won * ((100 + p) / 100))
-        document.querySelector('.won-result').innerHTML = pWon.toLocaleString()
+      const won = (value * price) / unit
+      const pWon = Math.floor(won * ((100 + p) / 100))
+      document.querySelector('.won-result').innerHTML = pWon.toLocaleString()
     }
 
     async function fetchPrice() {
-        price = await fetch('https://api.upbit.com/v1/candles/days?market=KRW-BTC&count=1').then(res => res.json()).then(res => res[0]['trade_price'])
-        document.querySelector('.price > b').innerHTML = `₩ ${price.toLocaleString()}`
-        document.querySelector('.time').innerHTML = (new Date()).toLocaleString('ko-KR', {
-            hour12: false,
-            year: 'numeric',
-            month: 'numeric',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-        })
-        syncSats(wonValue, pwValue)
-        syncWon(satsValue, psValue)
+      price = await fetch(
+        'https://api.upbit.com/v1/candles/days?market=KRW-BTC&count=1',
+      )
+        .then(res => res.json())
+        .then(res => res[0]['trade_price'])
+      document.querySelector(
+        '.price > b',
+      ).innerHTML = `₩ ${price.toLocaleString()}`
+      document.querySelector('.time').innerHTML = new Date().toLocaleString(
+        'ko-KR',
+        {
+          hour12: false,
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+        },
+      )
+      syncSats(wonValue, pwValue)
+      syncWon(satsValue, psValue)
     }
 
     function loadValue() {
-        if (!wonValue) {
-            wonValue = Number(localStorage.getItem('wonValue')) || 30000
-            document.querySelector('.won-input').value = wonValue.toLocaleString()
-            syncSats(wonValue, pwValue)
-        }
-        if (!satsValue) {
-            satsValue = Number(localStorage.getItem('satsValue')) || 100000
-            document.querySelector('.sats-input').value = satsValue.toLocaleString()
-            syncSats(satsValue, psValue)
-        }
+      if (!wonValue) {
+        wonValue = Number(localStorage.getItem('wonValue')) || 30000
+        document.querySelector('.won-input').value = wonValue.toLocaleString()
+        syncSats(wonValue, pwValue)
+      }
+      if (!satsValue) {
+        satsValue = Number(localStorage.getItem('satsValue')) || 100000
+        document.querySelector('.sats-input').value = satsValue.toLocaleString()
+        syncSats(satsValue, psValue)
+      }
     }
 
     function loadPValue() {
-        if (!pwValue) {
-            const initValue = Number(localStorage.getItem('pwValue'))
-            pwValue = Number.isNaN(initValue) ? 30000 : initValue
-            document.querySelector('.pw-input').value = pwValue.toLocaleString()
-            syncSats(wonValue, pwValue)
-        }
-        if (!psValue) {
-            const initValue = Number(localStorage.getItem('psValue'))
-            psValue = Number.isNaN(initValue) ? 0 : initValue
-            document.querySelector('.ps-input').value = psValue.toLocaleString()
-            syncSats(satsValue, psValue)
-        }
+      if (!pwValue) {
+        const initValue = Number(localStorage.getItem('pwValue'))
+        pwValue = Number.isNaN(initValue) ? 30000 : initValue
+        document.querySelector('.pw-input').value = pwValue.toLocaleString()
+        syncSats(wonValue, pwValue)
+      }
+      if (!psValue) {
+        const initValue = Number(localStorage.getItem('psValue'))
+        psValue = Number.isNaN(initValue) ? 0 : initValue
+        document.querySelector('.ps-input').value = psValue.toLocaleString()
+        syncSats(satsValue, psValue)
+      }
     }
 
-
     async function init() {
-        loadValue()
-        loadPValue()
-        await fetchPrice()
-        document.querySelector('.won-input').addEventListener('keyup', (e) => {
-            const value = Number(e.target.value.replaceAll(',', ''))
-            document.querySelector('.won-input').value = value.toLocaleString()
-            wonValue = value
-            localStorage.setItem('wonValue', value)
-            syncSats(value, pwValue)
-        })
-        document.querySelector('.sats-input').addEventListener('keyup', (e) => {
-            const value = Number(e.target.value.replaceAll(',', ''))
-            document.querySelector('.sats-input').value = value.toLocaleString()
-            satsValue = value
-            localStorage.setItem('satsValue', value)
-            syncWon(value, psValue)
-        })
-        document.querySelector('.pw-input').addEventListener('keyup', (e) => {
-            const value = Number(e.target.value.replaceAll(',', ''))
-            pwValue = value
-            localStorage.setItem('pwValue', value)
-            syncSats(wonValue, value)
-        })
-        document.querySelector('.ps-input').addEventListener('keyup', (e) => {
-            const value = Number(e.target.value.replaceAll(',', ''))
-            psValue = value
-            localStorage.setItem('psValue', value)
-            syncWon(satsValue, value)
-        })
+      loadValue()
+      loadPValue()
+      await fetchPrice()
+      document.querySelector('.won-input').addEventListener('keyup', e => {
+        const value = Number(e.target.value.replaceAll(',', ''))
+        document.querySelector('.won-input').value = value.toLocaleString()
+        wonValue = value
+        localStorage.setItem('wonValue', value)
+        syncSats(value, pwValue)
+      })
+      document.querySelector('.sats-input').addEventListener('keyup', e => {
+        const value = Number(e.target.value.replaceAll(',', ''))
+        document.querySelector('.sats-input').value = value.toLocaleString()
+        satsValue = value
+        localStorage.setItem('satsValue', value)
+        syncWon(value, psValue)
+      })
+      document.querySelector('.pw-input').addEventListener('keyup', e => {
+        const value = Number(e.target.value.replaceAll(',', ''))
+        pwValue = value
+        localStorage.setItem('pwValue', value)
+        syncSats(wonValue, value)
+      })
+      document.querySelector('.ps-input').addEventListener('keyup', e => {
+        const value = Number(e.target.value.replaceAll(',', ''))
+        psValue = value
+        localStorage.setItem('psValue', value)
+        syncWon(satsValue, value)
+      })
     }
 
     init()
 
     setInterval(fetchPrice, 1000)
-
-
-</script>
+  </script>
 </body>
