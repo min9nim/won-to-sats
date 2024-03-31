@@ -153,6 +153,7 @@
         <div class="label">sats:</div>
         <input
           class="sats-input"
+          inputmode="decimal"
           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
         />
       </div>
@@ -160,7 +161,6 @@
         <div class="label">p(%):</div>
         <input
           class="ps-input"
-          inputmode="decimal"
           oninput="this.value = this.value.replace(/[^0-9.-]/g, '').replace(/(\..*)\./g, '$1');"
         />
       </div>
